@@ -1,0 +1,40 @@
+<Main>:
+    BoxLayout:
+        orientation: 'vertical'
+        #size: 1, 1
+
+        BoxLayout:
+            id: load_button
+            #orientation: 'vertical'
+            pos_hint: {'x': 0.5, 'top':0.2}
+            size_hint_y: 0.05
+            size_hint_x: 0.1
+            height: 30
+
+            Button:
+                text: 'Load'
+                on_release: root.show_load()
+
+        BoxLayout:
+            id: graph
+            orientation: 'vertical'
+            size_hint_y: 1
+            size_hint_x: 1
+            #pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+
+<LoadDialog>
+    BoxLayout:
+        orientation: 'vertical'
+        pos: root.pos
+        size: root.size
+        FileChooserIconView:
+            id: loadfile
+            on_selection: root.load(loadfile.path, loadfile.selection), root.cancel()
+
+        BoxLayout:
+            pos_hint_x: 0.5
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
